@@ -35,6 +35,13 @@ def main():
         default="imread",
         help="plugin module or file path. (default: %(default)r)",
     )
+    parser.add_argument(
+        "--interval",
+        type=float,
+        default=0.5,
+        help="interval time [sec] between images when playing by 's' key. "
+        "(default: %(default)s)",
+    )
     args, _ = parser.parse_known_args()
 
     plugin = args.plugin
@@ -61,6 +68,7 @@ def main():
     imgviz.io.pyglet_imshow(
         image=plugin.get_iterable_from_args(args=args),
         hook=lambda entry: plugin.get_image_from_entry(args=args, entry=entry),
+        interval=args.interval,
     )
     imgviz.io.pyglet_run()
 
