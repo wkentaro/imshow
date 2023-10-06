@@ -26,7 +26,7 @@ def add_arguments(parser):
     )
 
 
-def get_image_from_args(args):
+def get_iterable_from_args(args):
     image_pairs = []
     image_pair = []
     for image_filename in get_image_filenames(args.files_or_dirs):
@@ -39,10 +39,10 @@ def get_image_from_args(args):
     return image_pairs
 
 
-def hook(args, image):
+def get_image_from_entry(args, entry):
     images = [
         np.rot90(imgviz.io.imread(image_filename), k=args.rotate // 90)
-        for image_filename in image
+        for image_filename in entry
     ]
     return imgviz.tile(
         imgs=images,

@@ -5,7 +5,9 @@ import PIL.Image
 
 
 SUPPORTED_IMAGE_EXTENSIONS = {
-    ext for ext, fmt in PIL.Image.registered_extensions().items() if fmt in PIL.Image.OPEN
+    ext
+    for ext, fmt in PIL.Image.registered_extensions().items()
+    if fmt in PIL.Image.OPEN
 }
 
 
@@ -34,9 +36,9 @@ def add_arguments(parser):
     pass
 
 
-def get_image_from_args(args):
+def get_iterable_from_args(args):
     return list(get_image_filenames(args.files_or_dirs))
 
 
-def hook(args, image):
-    return imgviz.io.imread(image)
+def get_image_from_entry(args, entry):
+    return imgviz.io.imread(entry)
