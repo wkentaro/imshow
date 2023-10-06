@@ -41,7 +41,7 @@ def get_iterable_from_args(args):
 
 def get_image_from_entry(args, entry):
     images = [
-        np.rot90(imgviz.io.imread(image_filename), k=args.rotate // 90)
+        np.rot90(imgviz.asrgb(imgviz.io.imread(image_filename)), k=args.rotate // 90)
         for image_filename in entry
     ]
     return imgviz.tile(
