@@ -1,3 +1,5 @@
+import os
+
 import imgviz
 import PIL.Image
 
@@ -9,11 +11,20 @@ SUPPORTED_IMAGE_EXTENSIONS = {
 
 def get_image_filenames(files_or_dirs, filter_by_ext=False):
     for file_or_dir in files_or_dirs:
-        if file_or_dir.isdir():
-            yield from get_image_filenames(files_or_dirs=sorted(file_or_dir.listdir()), filter_by_ext=True)
+        if os.path.isdir(file_or_dir):
+            yield from get_image_filenames(
+                files_or_dirs=(
+                    os.path.join(file_or_dir, basename)
+                    for basename in sorted(os.listdir(file_or_dir))
+                ),
+                filter_by_ext=True,
+            )
         else:
             if filter_by_ext:
-                if file_or_dir.ext.lower() in SUPPORTED_IMAGE_EXTENSIONS:
+                if (
+                    os.path.splitext(file_or_dir)[1].lower()
+                    in SUPPORTED_IMAGE_EXTENSIONS
+                ):
                     yield file_or_dir
             else:
                 yield file_or_dir

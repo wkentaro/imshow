@@ -5,9 +5,7 @@ import importlib.machinery
 import os
 
 import imgviz
-import path
 import PIL.Image
-from loguru import logger
 
 import imgviz_cli
 
@@ -28,7 +26,6 @@ def main():
     )
     parser.add_argument(
         "files_or_dirs",
-        type=path.Path,
         nargs="*",
         help="files or dirs that contain images",
     )
