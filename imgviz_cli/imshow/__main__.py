@@ -5,7 +5,6 @@ import importlib.machinery
 import os
 
 import imgviz
-import PIL.Image
 
 import imgviz_cli
 
