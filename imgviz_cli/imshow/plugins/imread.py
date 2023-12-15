@@ -3,7 +3,6 @@ import os
 import imgviz
 import PIL.Image
 
-
 SUPPORTED_IMAGE_EXTENSIONS = {
     ext
     for ext, fmt in PIL.Image.registered_extensions().items()
