@@ -18,13 +18,13 @@ clean:
   @rm -rf src/*.egg-info/ build/ dist/ .tox/
 
 format:
-  isort .
+  isort --recursive --force-single-line-imports .
   black .
 
 lint:
-  flake8 .
+  isort --recursive --force-single-line-imports --check .
   black --check .
-  isort --check .
+  flake8 .
 
 test:
   @python -m pytest -sxv tests/
