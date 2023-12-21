@@ -24,14 +24,9 @@ def main():
         version=f"%(prog)s {imgviz_cli.__version__}",
     )
     parser.add_argument(
-        "files_or_dirs",
-        nargs="*",
-        help="files or dirs that contain images",
-    )
-    parser.add_argument(
         "--plugin",
         "-p",
-        default="imread",
+        default="base",
         help="plugin module or file path. (default: %(default)r)",
     )
     parser.add_argument(

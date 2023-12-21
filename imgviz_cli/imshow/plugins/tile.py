@@ -1,10 +1,18 @@
 import imgviz
 import numpy as np
 
-from imgviz_cli.imshow.plugins.imread import get_image_filenames
+from imgviz_cli.imshow.plugins import base
+
+try:
+    from itertools import batched
+except ImportError:
+
+    def batched(iterable, n):
+        return zip(*[iter(iterable)] * n)
 
 
 def add_arguments(parser):
+    base.add_arguments(parser)
     parser.add_argument(
         "--row",
         type=int,
@@ -17,33 +25,14 @@ def add_arguments(parser):
         help="Number of images in column (default: %(default)s)",
         default=1,
     )
-    parser.add_argument(
-        "--rotate",
-        type=int,
-        choices=[0, 90, 180, 270],
-        help="Rotate images (default: %(default)s)",
-        default=0,
-    )
 
 
 def get_iterable_from_args(args):
-    image_pairs = []
-    image_pair = []
-    for image_filename in get_image_filenames(args.files_or_dirs):
-        image_pair.append(image_filename)
-        if len(image_pair) == args.row * args.col:
-            image_pairs.append(image_pair)
-            image_pair = []
-    if image_pair:
-        image_pairs.append(image_pair)
-    return image_pairs
+    yield from batched(base.get_iterable_from_args(args), args.row * args.col)
 
 
 def get_image_from_entry(args, entry):
-    images = [
-        np.rot90(imgviz.asrgb(imgviz.io.imread(image_filename)), k=args.rotate // 90)
-        for image_filename in entry
-    ]
+    images = [imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in entry]
     return imgviz.tile(
         imgs=images,
         shape=(args.row, args.col),
