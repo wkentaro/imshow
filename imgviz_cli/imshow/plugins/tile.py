@@ -1,5 +1,4 @@
 import imgviz
-import numpy as np
 
 from imgviz_cli.imshow.plugins import base
 
