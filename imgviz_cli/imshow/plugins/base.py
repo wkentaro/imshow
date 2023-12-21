@@ -23,5 +23,5 @@ def get_iterable_from_args(args):
     )
 
 
-def get_image_from_entry(args, entry):
-    return imgviz.io.imread(entry)
+def get_image_from_item(args, item):
+    return imgviz.io.imread(item)

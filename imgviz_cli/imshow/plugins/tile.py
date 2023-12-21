@@ -33,9 +33,9 @@ def get_iterable_from_args(args):
     yield from batched(base.get_iterable_from_args(args), args.row * args.col)
 
 
-def get_image_from_entry(args, entry):
+def get_image_from_item(args, item):
     images = [
-        imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in entry
+        imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in item
     ]
     return imgviz.tile(
         imgs=images,

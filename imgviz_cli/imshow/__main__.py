@@ -61,7 +61,7 @@ def main():
 
     imgviz.io.pyglet_imshow(
         image=plugin.get_iterable_from_args(args=args),
-        hook=lambda entry: plugin.get_image_from_entry(args=args, entry=entry),
+        hook=lambda item: plugin.get_image_from_item(args=args, item=item),
         interval=args.interval,
     )
     imgviz.io.pyglet_run()
