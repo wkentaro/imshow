@@ -32,7 +32,7 @@ def get_items(args):
     return list(batched(base.get_items(args), args.row * args.col))
 
 
-def get_image_from_item(args, item):
+def get_image(args, item):
     images = [
         imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in item
     ]

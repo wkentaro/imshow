@@ -23,5 +23,5 @@ def get_items(args):
     )
 
 
-def get_image_from_item(args, item):
+def get_image(args, item):
     return imgviz.io.imread(item)
