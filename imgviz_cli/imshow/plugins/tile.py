@@ -28,8 +28,8 @@ def add_arguments(parser):
     )
 
 
-def get_iterable_from_args(args):
-    yield from batched(base.get_iterable_from_args(args), args.row * args.col)
+def get_items(args):
+    return list(batched(base.get_items(args), args.row * args.col))
 
 
 def get_image_from_item(args, item):
