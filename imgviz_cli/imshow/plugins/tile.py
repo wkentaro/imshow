@@ -34,7 +34,9 @@ def get_iterable_from_args(args):
 
 
 def get_image_from_entry(args, entry):
-    images = [imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in entry]
+    images = [
+        imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in entry
+    ]
     return imgviz.tile(
         imgs=images,
         shape=(args.row, args.col),
