@@ -8,6 +8,8 @@ try:
 except ImportError:
 
     def batched(iterable, n):
+        if n < 1:
+            raise ValueError("n must be >= 1")
         return zip(*[iter(iterable)] * n)
 
 
