@@ -23,11 +23,20 @@ def main():
         action="version",
         version=f"%(prog)s {imgviz_cli.__version__}",
     )
+
+    official_plugins = sorted(
+        filename.split(".")[0]
+        for filename in os.listdir(
+            os.path.join(os.path.dirname(imgviz_cli.imshow.__file__), "plugins")
+        )
+        if filename.endswith(".py") and filename != "__init__.py"
+    )
     parser.add_argument(
         "--plugin",
         "-p",
         default="base",
-        help="plugin module or file path. (default: %(default)r)",
+        help=f"plugin module or file path. official plugins: "
+        f"{official_plugins}. (default: %(default)r)",
     )
     parser.add_argument(
         "--interval",
