@@ -6,7 +6,7 @@ import os
 
 import imgviz
 
-import imgviz_cli
+import imshow
 
 
 def main():
@@ -21,13 +21,13 @@ def main():
         "--version",
         "-V",
         action="version",
-        version=f"%(prog)s {imgviz_cli.__version__}",
+        version=f"%(prog)s {imshow.__version__}",
     )
 
     official_plugins = sorted(
         filename.split(".")[0]
         for filename in os.listdir(
-            os.path.join(os.path.dirname(imgviz_cli.imshow.__file__), "plugins")
+            os.path.join(os.path.dirname(imshow.__file__), "plugins")
         )
         if filename.endswith(".py") and filename != "__init__.py"
     )
@@ -55,7 +55,7 @@ def main():
         try:
             plugin = importlib.import_module(plugin)
         except ModuleNotFoundError:
-            plugin = importlib.import_module(f"imgviz_cli.imshow.plugins.{plugin}")
+            plugin = importlib.import_module(f"imshow.plugins.{plugin}")
 
     plugin.add_arguments(parser=parser)
     args = parser.parse_args()

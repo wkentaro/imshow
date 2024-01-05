@@ -1,6 +1,6 @@
 import imgviz
 
-from imgviz_cli import utils
+from imshow import utils
 
 
 def add_arguments(parser):

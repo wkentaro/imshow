@@ -1,6 +1,6 @@
 import imgviz
 
-from imgviz_cli.imshow.plugins import base
+from imshow.plugins import base
 
 try:
     from itertools import batched

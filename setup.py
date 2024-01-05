@@ -9,7 +9,7 @@ from setuptools import setup
 
 
 def get_version():
-    filename = "imgviz_cli/__init__.py"
+    filename = "imshow/__init__.py"
     with open(filename) as f:
         match = re.search(r"""^__version__ = ['"]([^'"]*)['"]""", f.read(), re.M)
     if not match:
@@ -34,7 +34,7 @@ def get_long_description():
         import github2pypi
 
         return github2pypi.replace_url(
-            slug="wkentaro/imgviz-cli", content=long_description, branch="main"
+            slug="wkentaro/imshow", content=long_description, branch="main"
         )
     except ImportError:
         # when this package is being installed
@@ -66,7 +66,7 @@ def main():
             "git tag v{:s}".format(version),
             "git push origin main --tags",
             "python setup.py sdist",
-            "twine upload dist/imgviz-cli-{:s}.tar.gz".format(version),
+            "twine upload dist/imshow-{:s}.tar.gz".format(version),
         ]
         for cmd in commands:
             print("+ {}".format(cmd))
@@ -74,17 +74,17 @@ def main():
         sys.exit(0)
 
     setup(
-        name="imgviz-cli",
+        name="imshow",
         version=version,
         packages=find_packages(),
         install_requires=get_install_requires(),
         python_requires=">=3.7",
-        description="Command Line Tools for Imgviz",
+        description="Highly customizable image viewer",
         long_description=get_long_description(),
         long_description_content_type="text/markdown",
         author="Kentaro Wada",
         author_email="www.kentaro.wada@gmail.com",
-        url="http://github.com/wkentaro/imgviz-cli",
+        url="http://github.com/wkentaro/imshow",
         license="MIT",
         classifiers=[
             "Development Status :: 1 - Planning",
@@ -97,7 +97,7 @@ def main():
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
         ],
-        entry_points={"console_scripts": ["imshow=imgviz_cli.imshow.__main__:main"]},
+        entry_points={"console_scripts": ["imshow=imshow.__main__:main"]},
     )
 
 

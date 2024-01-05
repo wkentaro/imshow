@@ -1,1 +1,1 @@
-# imgviz-cli
+# imshow
