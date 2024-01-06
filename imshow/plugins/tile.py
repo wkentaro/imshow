@@ -29,7 +29,7 @@ def add_arguments(parser):
 
 
 def get_items(args):
-    return list(batched(base.get_items(args), args.row * args.col))
+    yield from batched(base.get_items(args), args.row * args.col)
 
 
 def get_image(args, item):
