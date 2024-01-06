@@ -1,5 +1,7 @@
 -r requirements.txt
 github2pypi==1.0.0
+mypy
+types-Pillow
 pytest
 ruff
 twine

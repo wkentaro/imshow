@@ -3,7 +3,7 @@ import imgviz
 from imshow.plugins import base
 
 try:
-    from itertools import batched
+    from itertools import batched  # type: ignore[attr-defined]
 except ImportError:
 
     def batched(iterable, n):
