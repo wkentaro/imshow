@@ -5,7 +5,6 @@ import importlib.machinery
 import os
 
 import imshow
-from imshow.plugins import base
 
 
 def main():
@@ -39,43 +38,29 @@ def main():
     )
     args, _ = parser.parse_known_args()
 
-    plugin = args.plugin
-
-    if os.path.exists(plugin):
-        plugin = importlib.machinery.SourceFileLoader("plugin", plugin).load_module()
+    if os.path.exists(args.plugin):
+        plugin_module = importlib.machinery.SourceFileLoader(
+            "plugin", args.plugin
+        ).load_module()
     else:
         try:
-            plugin = importlib.import_module(plugin)
+            plugin_module = importlib.import_module(args.plugin)
         except ModuleNotFoundError:
-            plugin = importlib.import_module(f"imshow.plugins.{plugin}")
+            plugin_module = importlib.import_module(f"imshow.plugins.{args.plugin}")
 
-    if hasattr(plugin, "add_arguments"):
-        plugin.add_arguments(parser=parser)
-    else:
-        base.add_arguments(parser=parser)
+    plugin_module.Plugin.add_arguments(parser=parser)
     args = parser.parse_args()
 
     if args.help:
         parser.print_help()
         return
 
-    if not args.files_or_dirs:
-        parser.error("the following arguments are required: files_or_dirs")
-        return
-
-    if hasattr(plugin, "get_items"):
-        get_items = plugin.get_items
-    else:
-        get_items = base.get_items
-
-    if hasattr(plugin, "get_image"):
-        get_image = plugin.get_image
-    else:
-        get_image = base.get_image
+    plugin = plugin_module.Plugin(args=args)
 
     imshow.imshow(
-        items=get_items(args=args),
-        get_image_from_item=lambda item: get_image(args=args, item=item),
+        items=plugin.get_items(),
+        keymap=plugin.get_keymap(),
+        get_image_from_item=plugin.get_image,
     )
 
 

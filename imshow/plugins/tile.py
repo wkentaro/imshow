@@ -15,36 +15,44 @@ except ImportError:
         return itertools.zip_longest(*[iter(iterable)] * n)
 
 
-def add_arguments(parser):
-    base.add_arguments(parser)
-    parser.add_argument(
-        "--row",
-        type=int,
-        help="Number of images in row (default: %(default)s)",
-        default=1,
-    )
-    parser.add_argument(
-        "--col",
-        type=int,
-        help="Number of images in column (default: %(default)s)",
-        default=1,
-    )
+class Plugin(base.Plugin):
+    @staticmethod
+    def add_arguments(parser):
+        base.Plugin.add_arguments(parser)
+        parser.add_argument(
+            "--row",
+            type=int,
+            help="Number of images in row (default: %(default)s)",
+            default=1,
+        )
+        parser.add_argument(
+            "--col",
+            type=int,
+            help="Number of images in column (default: %(default)s)",
+            default=1,
+        )
 
+    row: int
+    col: int
 
-def get_items(args):
-    yield from batched(base.get_items(args), args.row * args.col)
+    def __init__(self, args):
+        super().__init__(args=args)
+        self.row = args.row
+        self.col = args.col
 
+    def get_items(self):
+        yield from batched(super().get_items(), self.row * self.col)
 
-def get_image(args, item):
-    images = [
-        np.zeros((1, 1, 3), dtype=np.uint8)
-        if filepath is None
-        else imgviz.asrgb(imgviz.io.imread(filepath))
-        for filepath in item
-    ]
-    return imgviz.tile(
-        imgs=images,
-        shape=(args.row, args.col),
-        border=(0, 0, 0),
-        border_width=100,
-    )
+    def get_image(self, item):
+        images = [
+            np.zeros((1, 1, 3), dtype=np.uint8)
+            if filepath is None
+            else imgviz.asrgb(imgviz.io.imread(filepath))
+            for filepath in item
+        ]
+        return imgviz.tile(
+            imgs=images,
+            shape=(self.row, self.col),
+            border=(0, 0, 0),
+            border_width=100,
+        )
