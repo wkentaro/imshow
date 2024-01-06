@@ -37,13 +37,6 @@ def main():
         help=f"plugin module or file path. official plugins: "
         f"{official_plugins}. (default: %(default)r)",
     )
-    parser.add_argument(
-        "--interval",
-        type=float,
-        default=0.5,
-        help="interval time [sec] between images when playing by 's' key. "
-        "(default: %(default)s)",
-    )
     args, _ = parser.parse_known_args()
 
     plugin = args.plugin
