@@ -16,7 +16,7 @@ def imshow(
     *,
     keymap: Optional[dict] = None,
     get_image_from_item: Optional[Callable] = None,
-    get_caption_from_item: Optional[Callable] = None,
+    get_title_from_item: Optional[Callable] = None,
 ) -> None:
     if not isinstance(items, (list, types.GeneratorType)):
         items = [items]
@@ -27,9 +27,9 @@ def imshow(
         def get_image_from_item(item):
             return item
 
-    if get_caption_from_item is None:
+    if get_title_from_item is None:
 
-        def get_caption_from_item(item):
+        def get_title_from_item(item):
             return str(item)
 
     items = _generators.CachedGenerator(iter(items))
@@ -57,7 +57,7 @@ def imshow(
         window.close()
 
     def update(item):
-        window.set_caption(get_caption_from_item(item))
+        window.set_caption(get_title_from_item(item))
         sprite.image = _pyglet.convert_to_imagedata(get_image_from_item(item))
         _pyglet.centerize_sprite_in_window(sprite, window)
 
