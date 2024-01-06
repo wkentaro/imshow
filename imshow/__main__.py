@@ -5,6 +5,7 @@ import importlib.machinery
 import os
 
 import imshow
+from imshow.plugins import base
 
 
 def main():
@@ -55,7 +56,10 @@ def main():
         except ModuleNotFoundError:
             plugin = importlib.import_module(f"imshow.plugins.{plugin}")
 
-    plugin.add_arguments(parser=parser)
+    if hasattr(plugin, "add_arguments"):
+        plugin.add_arguments(parser=parser)
+    else:
+        base.add_arguments(parser=parser)
     args = parser.parse_args()
 
     if args.help:
@@ -66,9 +70,19 @@ def main():
         parser.error("the following arguments are required: files_or_dirs")
         return
 
+    if hasattr(plugin, "get_items"):
+        get_items = plugin.get_items
+    else:
+        get_items = base.get_items
+
+    if hasattr(plugin, "get_image"):
+        get_image = plugin.get_image
+    else:
+        get_image = base.get_image
+
     imshow.imshow(
-        items=plugin.get_items(args=args),
-        get_image_from_item=lambda item: plugin.get_image(args=args, item=item),
+        items=get_items(args=args),
+        get_image_from_item=lambda item: get_image(args=args, item=item),
     )
 
 
