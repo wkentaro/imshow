@@ -1,4 +1,7 @@
+import itertools
+
 import imgviz
+import numpy as np
 
 from imshow.plugins import base
 
@@ -9,7 +12,7 @@ except ImportError:
     def batched(iterable, n):
         if n < 1:
             raise ValueError("n must be >= 1")
-        return zip(*[iter(iterable)] * n)
+        return itertools.zip_longest(*[iter(iterable)] * n)
 
 
 def add_arguments(parser):
@@ -33,7 +36,12 @@ def get_items(args):
 
 
 def get_image(args, item):
-    images = [imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in item]
+    images = [
+        np.zeros((1, 1, 3), dtype=np.uint8)
+        if filepath is None
+        else imgviz.asrgb(imgviz.io.imread(filepath))
+        for filepath in item
+    ]
     return imgviz.tile(
         imgs=images,
         shape=(args.row, args.col),
