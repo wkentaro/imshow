@@ -31,14 +31,22 @@ class Plugin(base.Plugin):
             help="Number of images in column (default: %(default)s)",
             default=1,
         )
+        parser.add_argument(
+            "--border-width",
+            type=int,
+            help="Border width (default: %(default)s)",
+            default=10,
+        )
 
     row: int
     col: int
+    border_width: int
 
     def __init__(self, args):
         super().__init__(args=args)
         self.row = args.row
         self.col = args.col
+        self.border_width = args.border_width
 
     def get_items(self):
         yield from batched(super().get_items(), self.row * self.col)
@@ -54,5 +62,5 @@ class Plugin(base.Plugin):
             imgs=images,
             shape=(self.row, self.col),
             border=(0, 0, 0),
-            border_width=100,
+            border_width=self.border_width,
         )
