@@ -4,8 +4,6 @@ import argparse
 import importlib.machinery
 import os
 
-import imgviz
-
 import imshow
 
 
@@ -68,12 +66,10 @@ def main():
         parser.error("the following arguments are required: files_or_dirs")
         return
 
-    imgviz.io.pyglet_imshow(
-        image=plugin.get_items(args=args),
-        hook=lambda item: plugin.get_image(args=args, item=item),
-        interval=args.interval,
+    imshow.imshow(
+        items=plugin.get_items(args=args),
+        get_image_from_item=lambda item: plugin.get_image(args=args, item=item),
     )
-    imgviz.io.pyglet_run()
 
 
 if __name__ == "__main__":
