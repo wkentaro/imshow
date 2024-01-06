@@ -33,9 +33,7 @@ def get_items(args):
 
 
 def get_image(args, item):
-    images = [
-        imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in item
-    ]
+    images = [imgviz.asrgb(imgviz.io.imread(image_filename)) for image_filename in item]
     return imgviz.tile(
         imgs=images,
         shape=(args.row, args.col),
