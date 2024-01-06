@@ -1,6 +1,6 @@
 import imgviz
 
-from imshow import utils
+from imshow import _paths
 
 
 def add_arguments(parser):
@@ -18,7 +18,7 @@ def add_arguments(parser):
 
 
 def get_items(args):
-    yield from utils.get_image_filepaths(
+    yield from _paths.get_image_filepaths(
         files_or_dirs=args.files_or_dirs, recursive=args.recursive
     )
 
