@@ -1,5 +1,5 @@
-from typing import Any
 import types
+from typing import Any
 
 
 class CachedGenerator:
