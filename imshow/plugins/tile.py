@@ -32,21 +32,37 @@ class Plugin(base.Plugin):
             default=1,
         )
         parser.add_argument(
+            "--padding-color",
+            nargs=3,
+            help="Padding color (default: %(default)s)",
+            default=[0, 0, 0],
+        )
+        parser.add_argument(
             "--border-width",
             type=int,
             help="Border width (default: %(default)s)",
             default=10,
         )
+        parser.add_argument(
+            "--border-color",
+            nargs=3,
+            help="border color (default: %(default)s)",
+            default=[127, 127, 127],
+        )
 
     row: int
     col: int
+    padding_color: list[int]
     border_width: int
+    border_color: list[int]
 
     def __init__(self, args):
         super().__init__(args=args)
         self.row = args.row
         self.col = args.col
+        self.padding_color = args.padding_color
         self.border_width = args.border_width
+        self.border_color = args.border_color
 
     def get_items(self):
         yield from batched(super().get_items(), self.row * self.col)
@@ -61,6 +77,7 @@ class Plugin(base.Plugin):
         return imgviz.tile(
             imgs=images,
             shape=(self.row, self.col),
-            border=(0, 0, 0),
+            cval=self.padding_color,
+            border=self.border_color,
             border_width=self.border_width,
         )

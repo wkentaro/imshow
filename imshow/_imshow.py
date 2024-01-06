@@ -42,12 +42,13 @@ def imshow(
     )
 
     sprite: pyglet.sprite.Sprite = pyglet.sprite.Sprite(
-        _pyglet.convert_to_imagedata(image)
+        img=_pyglet.convert_to_imagedata(image)
     )
     _pyglet.centerize_sprite_in_window(sprite, window)
 
     @window.event
     def on_draw():
+        pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1.0)
         window.clear()
         sprite.draw()
 
