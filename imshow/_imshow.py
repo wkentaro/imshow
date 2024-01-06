@@ -33,10 +33,13 @@ def imshow(
             return str(item)
 
     items = _generators.CachedGenerator(iter(items))
-    image: np.ndarray = get_image_from_item(next(items))
+    item = next(items)
+    image: np.ndarray = get_image_from_item(item)
 
     aspect_ratio: float = image.shape[1] / image.shape[0]  # width / height
-    window = _pyglet.initialize_window(aspect_ratio=aspect_ratio)
+    window = _pyglet.initialize_window(
+        aspect_ratio=aspect_ratio, caption=get_title_from_item(item)
+    )
 
     sprite: pyglet.sprite.Sprite = pyglet.sprite.Sprite(
         _pyglet.convert_to_imagedata(image)
