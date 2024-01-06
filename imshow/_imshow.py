@@ -89,7 +89,7 @@ def imshow(
             symbol_string = pyglet.window.key.symbol_string(symbol).lower()
             modifiers_string = pyglet.window.key.modifiers_string(modifiers)
             if modifiers_string:
-                key = f"{modifiers_string}+{symbol_string}"
+                key = f"{modifiers_string.lstrip('MOD_')}+{symbol_string}"
             else:
                 key = symbol_string
             print(
@@ -112,6 +112,7 @@ def imshow(
     @window.event()
     def on_key_press(symbol, modifiers):
         if (symbol, modifiers) in keymap:
-            keymap[(symbol, modifiers)](state=state)
+            if keymap[(symbol, modifiers)](state=state):
+                update(state.items[state.index])
 
     pyglet.app.run()
