@@ -17,7 +17,7 @@ clean:
 
 version := $(shell python -m imshow --version | awk '{print $$2}')
 
-release: clean
+publish: clean
 	pip install -e .
 	git pull origin main
 	git tag v$(version)
