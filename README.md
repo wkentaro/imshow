@@ -72,7 +72,7 @@ imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 ## Custom plugin
 
 See [`plugins/base.py`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins/base.py) for the most basic example.
-For more examples, check all of the [`plugins`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
+For more examples, check [`plugins` folder](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
 
 ```bash
 imshow examples/*.jpg --plugin custom_plugin.py
