@@ -42,4 +42,5 @@ jobs:
       shell: bash -l {0}
       run: |
         make lint
+      # `import pyglet` crashes on ubuntu-latest due to missing X window system
       if: matrix.os == 'macos-latest'
