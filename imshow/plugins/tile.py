@@ -1,4 +1,5 @@
 import itertools
+import os
 
 import imgviz
 import numpy as np
@@ -81,3 +82,12 @@ class Plugin(base.Plugin):
             border=self.border_color,
             border_width=self.border_width,
         )
+
+    def get_title(self, item):
+        root_path = os.path.dirname(item[0])
+        title = [item[0]]
+        for filepath in item[1:]:
+            if filepath is None:
+                continue
+            title.append(os.path.relpath(filepath, root_path))
+        return ", ".join(title)

@@ -37,3 +37,6 @@ class Plugin:
 
     def get_keymap(self):
         return {}
+
+    def get_title(self, item):
+        return str(item)

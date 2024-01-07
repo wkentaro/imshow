@@ -59,6 +59,7 @@ def main():
         items=plugin.get_items(),
         keymap=plugin.get_keymap(),
         get_image_from_item=plugin.get_image,
+        get_title_from_item=plugin.get_title,
     )
 
 
