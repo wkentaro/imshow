@@ -75,7 +75,7 @@ See [`plugins/base.py`](https://github.com/wkentaro/imshow/blob/main/imshow/plug
 For more examples, check [`plugins` folder](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
 
 ```bash
-imshow examples/*.jpg --plugin custom_plugin.py
+imshow examples/*.jpg --plugin custom_plugin.py --option1 7
 ```
 
 ```python
