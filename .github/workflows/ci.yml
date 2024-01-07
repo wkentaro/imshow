@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        python-version: ['3.8']
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: ${{ matrix.python-version }}
+
+
+    - name: Set up Python
+      shell: bash -l {0}
+      run: |
+        conda install -q -y python=${{ matrix.python-version }}
+        which python
+        python --version
+        pip --version
+
+    - name: Install
+      shell: bash -l {0}
+      run: |
+        pip install .[test]
+
+    - name: Linter
+      shell: bash -l {0}
+      run: |
+        make lint
