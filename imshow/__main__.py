@@ -3,6 +3,7 @@ import importlib.machinery
 import os
 
 import imshow
+import imshow.plugins
 
 
 def main():
@@ -22,9 +23,7 @@ def main():
 
     official_plugins = sorted(
         filename.split(".")[0]
-        for filename in os.listdir(
-            os.path.join(os.path.dirname(imshow.__file__), "plugins")
-        )
+        for filename in os.listdir(os.path.dirname(imshow.plugins.__file__))
         if filename.endswith(".py") and filename != "__init__.py"
     )
     parser.add_argument(
