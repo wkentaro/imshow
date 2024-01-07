@@ -15,10 +15,9 @@ format:
 clean:
 	rm -rf build dist *.egg-info
 
-version := $(shell python -m imshow --version | awk '{print $$2}')
-
 publish: clean
 	pip install -e .
+	version := $(shell python -m imshow --version | awk '{print $$2}')
 	git pull origin main
 	git tag v$(version)
 	git push origin main --tags
