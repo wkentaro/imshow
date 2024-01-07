@@ -69,7 +69,7 @@ imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 
 <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_2.png" height="150"> 
 
-## Custom plugins
+## Custom plugin
 
 See [`plugins/base.py`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins/base.py) for the most basic example.
 For more examples, check all of the [`plugins`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
