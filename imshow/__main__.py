@@ -17,7 +17,7 @@ def main():
         "--version",
         "-V",
         action="version",
-        version=f"%(prog)s {imshow.__version__}",
+        version=f"imshow {imshow.__version__}",
     )
 
     official_plugins = sorted(

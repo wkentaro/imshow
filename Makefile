@@ -11,3 +11,15 @@ lint:
 format:
 	ruff format
 	ruff check --fix
+
+clean:
+	rm -rf build dist *.egg-info
+
+version := $(shell python -m imshow --version | awk '{print $$2}')
+
+release: clean
+	git pull origin main
+	git tag v$(version)
+	git push origin main --tags
+	python -m build --sdist --wheel
+	python -m twine upload dist/imshow-$(version)*
