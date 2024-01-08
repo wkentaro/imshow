@@ -17,9 +17,8 @@ clean:
 
 publish: clean
 	pip install -e .
-	version := $(shell python -m imshow --version | awk '{print $$2}')
 	git pull origin main
-	git tag v$(version)
+	git tag v$(shell python -m imshow --version | awk '{print $$2}')
 	git push origin main --tags
 	python -m build --sdist --wheel
-	python -m twine upload dist/imshow-$(version)*
+	python -m twine upload dist/imshow-*
