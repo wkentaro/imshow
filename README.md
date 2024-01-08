@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/wkentaro/imshow/blob/main/.readme/icon.png" width="200", height="200">
+  <img src="https://github.com/wkentaro/imshow/raw/main/.readme/icon.png" width="200", height="200">
   <h1>imshow</h1>
   <p>
     <b>The Flexible Image Display</b>
@@ -59,7 +59,7 @@ imshow examples/*.jpg -p tile --col 3 --row 3
 imshow examples/*.jpg -p tile --col 3
 ```
 
-<img src="https://github.com/wkentaro/imshow/blob/main/.readme/tile_0.png" height="200"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/tile_1.png" height="150">
+<img src="https://github.com/wkentaro/imshow/raw/main/.readme/tile_0.png" height="200"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/tile_1.png" height="150">
 
 ### `-p mark`
 
@@ -67,7 +67,7 @@ imshow examples/*.jpg -p tile --col 3
 imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 ```
 
-<img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_2.png" height="150"> 
+<img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_2.png" height="150"> 
 
 ## How to create custom plugin
 
