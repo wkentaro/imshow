@@ -9,11 +9,11 @@
 
 *Imshow* is a Python app to display images.
 
-*Imshow* is:
+*Imshow* gives you:
 
-- **Flexible** - CLI & Python interface;
-- **Customizabile** - visualize any data via the plugin system;
-- **Fast & clean**.
+- **Flexiblity** - CLI & Python interface;
+- **Customizability** - visualize any data via the plugin system;
+- **Fast & clean** image display.
 
 ## Installation
 
