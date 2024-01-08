@@ -2,18 +2,18 @@
   <img src="https://github.com/wkentaro/imshow/raw/main/.readme/icon.png" width="200", height="200">
   <h1>imshow</h1>
   <p>
-    <b>The Flexible Image Display</b>
+    <b>Flexible and Customizable Image Display</b>
   </p>
   <br>
 </div>
 
 *Imshow* is a Python app to display images.
 
-*Imshow* gives you:
+*Imshow* is:
 
-- **Fast and clean** display via OpenGL backend;
-- **Flexibility** via command-line and code interfaces;
-- **Customizability** via plugin system.
+- **Flexible** - CLI & Python interface;
+- **Customizabile** - visualize any data via the plugin system;
+- **Fast & clean**.
 
 ## Installation
 
