@@ -69,7 +69,7 @@ imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 
 <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/blob/main/.readme/mark_2.png" height="150"> 
 
-## Custom plugin
+## How to create custom plugin
 
 You can pass a Python file that contains `class Plugin(base.Plugin)` to `--plugin, -p` to customize the behaviour of Imshow. Below example shows a countdown from 10 to 0 displayed as images.
 
