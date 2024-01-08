@@ -73,7 +73,7 @@ imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 
 You can pass a Python file that contains `class Plugin(base.Plugin)` to `--plugin, -p` to customize the behaviour of Imshow. Below example shows a countdown from 10 to 0 displayed as images.
 
-<img src=".readme/countdown_0.png" height=150> <img src=".readme/countdown_1.png" height=150> <img src=".readme/countdown_2.png" height=150>
+<img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_0.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_1.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_2.png" height=150>
 
 See [`plugins/base.py`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins/base.py) for the most basic example of scanning image files and displaying them.
 For more examples, check [`plugins` folder](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
