@@ -11,7 +11,7 @@ try:
     from itertools import batched  # type: ignore[attr-defined]
 except ImportError:
 
-    def batched(iterable, n):
+    def batched(iterable, n):  # type: ignore[no-redef]
         if n < 1:
             raise ValueError("n must be >= 1")
         return itertools.zip_longest(*[iter(iterable)] * n)
