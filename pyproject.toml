@@ -4,13 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "imshow"
-# Semantic Versioning 2.0.0: https://semver.org/
-# 1. MAJOR version when you make incompatible API changes;
-# 2. MINOR version when you add functionality in a backwards-compatible manner;
-# 3. PATCH version when you make backwards-compatible bug fixes.
-# e.g., 1.0.0a0, 1.0.0a1, 1.0.0b0, 1.0.0rc0, 1.0.0, 1.0.0.post0
-version = "0.2.0"
-description = "The flexible image display."
+description = "Flexible and Customizable Image Display"
 license = { text = "MIT" }
 requires-python = ">=3.8"
 authors = [
@@ -39,7 +33,7 @@ dependencies = [
   "imgviz",
   "pyglet",
 ]
-dynamic = ["readme"]
+dynamic = ["readme", "version"]
 
 [project.optional-dependencies]
 test = [
@@ -58,6 +52,15 @@ content-type = "text/markdown"
 fragments = [
   { path = "README.md" },
 ]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "imshow/_version.py"
+template = '''
+__version__ = "{version}"
+'''
 
 [project.scripts]
 imshow = "imshow:__main__.main"
