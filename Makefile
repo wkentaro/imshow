@@ -15,7 +15,7 @@ format:
 clean:
 	rm -rf build dist *.egg-info
 
-version := $(shell python -m imshow --version | awk '{print $$2}')
+version := $(shell grep '^version' pyproject.toml | sed -r 's/.*"(.*)"$$/\1/')
 
 publish: clean
 	git pull origin main
