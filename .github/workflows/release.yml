@@ -50,3 +50,69 @@ jobs:
         uses: mikepenz/action-gh-release@v0.2.0-a03
         with:
           body: ${{steps.github_release.outputs.changelog}}
+
+      - name: Create release url file
+        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+
+      - name: Save release url file for publish
+        uses: actions/upload-artifact@v1
+        with:
+          name: release_url
+          path: release_url.txt
+
+  publish:
+    needs: [release]
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: '3.8'
+
+    - name: Install main
+      shell: bash -l {0}
+      run: |
+        pip install .
+
+    - name: Run nuitka
+      shell: bash -l {0}
+      run: |
+        # https://github.com/wkentaro/imshow/actions/runs/7462467512/job/20304838502
+        conda install nuitka
+        # https://github.com/wkentaro/imshow/actions/runs/7462427376/job/20304706621
+        conda install libpython-static
+
+        mkdir build && cd build
+        ln -s ../imshow/__main__.py imshow
+        nuitka3 --onefile imshow
+
+    - name: Load release url file from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+
+    - name: Get release file name & upload url
+      id: get_release_info
+      run: |
+        echo "::set-output name=upload_url::$(cat release_url/release_url.txt)"
+
+    - name: Upload release executable
+      id: upload_release_executable_macos_linux
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+        asset_path: build/imshow.bin
+        asset_name: imshow-${{ runner.os }}
+        asset_content_type: application/octet-stream
