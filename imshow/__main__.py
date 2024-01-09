@@ -22,11 +22,9 @@ def main():
         version=f"imshow {imshow.__version__}",
     )
 
-    official_plugins = sorted(
-        filename.split(".")[0]
-        for filename in os.listdir(os.path.dirname(imshow.plugins.__file__))
-        if filename.endswith(".py") and filename != "__init__.py"
-    )
+    official_plugins = [
+        plugin for plugin in dir(imshow.plugins) if not plugin.startswith("_")
+    ]
     parser.add_argument(
         "--plugin",
         "-p",
