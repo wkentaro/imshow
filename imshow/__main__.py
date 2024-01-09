@@ -1,6 +1,7 @@
 import argparse
 import importlib.machinery
 import os
+import sys
 
 import imshow
 import imshow.plugins
@@ -41,9 +42,13 @@ def main():
         ).load_module()
     else:
         try:
-            plugin_module = importlib.import_module(args.plugin)
-        except ModuleNotFoundError:
             plugin_module = importlib.import_module(f"imshow.plugins.{args.plugin}")
+        except ModuleNotFoundError:
+            try:
+                plugin_module = importlib.import_module(args.plugin)
+            except ModuleNotFoundError:
+                print(f"Error: plugin {args.plugin!r} is not found.", file=sys.stderr)
+                sys.exit(1)
 
     plugin_module.Plugin.add_arguments(parser=parser)
     args = parser.parse_args()
