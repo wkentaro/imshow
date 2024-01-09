@@ -33,7 +33,11 @@ def imshow(
             return str(item)
 
     items = _generators.CachedGenerator(iter(items))
-    item = next(items)
+    try:
+        item = next(items)
+    except StopIteration:
+        print("No items to show.", file=sys.stderr)
+        return
     image: np.ndarray = get_image_from_item(item)
 
     aspect_ratio: float = image.shape[1] / image.shape[0]  # width / height
@@ -60,10 +64,22 @@ def imshow(
     def close_window(state):
         window.close()
 
+    def print_item_and_index() -> None:
+        total_size_str: str
+        try:
+            total_size_str = str(len(items))
+        except TypeError:
+            total_size_str = "n"
+        print(
+            f"[{state.index + 1}/{total_size_str}] {get_title_from_item(item)}",
+            file=sys.stderr,
+        )
+
     def update(item):
         window.set_caption(get_title_from_item(item))
         sprite.image = _pyglet.convert_to_imagedata(get_image_from_item(item))
         _pyglet.centerize_sprite_in_window(sprite, window)
+        print_item_and_index()
 
     def next_image(state):
         try:
@@ -71,8 +87,8 @@ def imshow(
                 item = state.items[state.index + 1]
             except IndexError:
                 item = next(state.items)
-            update(item)
             state.index += 1
+            update(item)
         except StopIteration:
             pass
 
@@ -82,8 +98,8 @@ def imshow(
                 item = state.items[state.index - 1]
             else:
                 raise IndexError
-            update(item)
             state.index -= 1
+            update(item)
         except IndexError:
             pass
 
@@ -118,5 +134,7 @@ def imshow(
         if (symbol, modifiers) in keymap:
             if keymap[(symbol, modifiers)](state=state):
                 update(state.items[state.index])
+
+    print_item_and_index()
 
     pyglet.app.run()
