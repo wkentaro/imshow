@@ -46,9 +46,9 @@ jobs:
         onefile: true
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: ${{ runner.os }} Build
+        name: build-${{ runner.os }}
         path: |
           build/*.exe
           build/*.bin
@@ -102,7 +102,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: build
-          pattern: "* Build"
+          pattern: build-*
           merge-multiple: true
 
       - name: Release
