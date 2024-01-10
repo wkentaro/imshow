@@ -15,11 +15,6 @@ format:
 clean:
 	rm -rf build dist *.egg-info
 
-version := $(shell cat imshow/_version.py | sed -r 's/.*"(.*)"$$/\1/')
-
 publish: clean
-	git pull origin main
-	git tag v$(version)
-	git push origin main --tags
 	python -m build --sdist --wheel
-	python -m twine upload dist/imshow-$(version)*
+	python -m twine upload dist/imshow-*
