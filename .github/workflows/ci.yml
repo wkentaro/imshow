@@ -110,5 +110,5 @@ jobs:
         with:
           draft: true
           body_path: ${{ github.workspace }}-CHANGELOG.txt
-          fiels: |
+          files: |
             build/*
