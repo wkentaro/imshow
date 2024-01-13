@@ -1,9 +1,11 @@
 <div align="center">
   <img src="https://github.com/wkentaro/imshow/raw/main/.readme/icon.png" width="200", height="200">
-  <h1>imshow</h1>
+  <h1>Imshow</h1>
   <p>
     <b>Flexible and Customizable Image Display</b>
   </p>
+  <br>
+  <br>
   <br>
 </div>
 
