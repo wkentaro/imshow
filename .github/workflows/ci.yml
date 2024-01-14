@@ -45,6 +45,14 @@ jobs:
         script-name: imshow
         onefile: true
 
+    - name: Test Executable
+      run: |
+        if [ "${{ matrix.os }}" = "windows-latest" ]; then
+          ./build/imshow.exe
+        else
+          ./build/imshow.bin
+        fi
+
     - name: Rename Executable
       run: |
         mv build/imshow.bin build/imshow-${{ runner.os }}.bin
