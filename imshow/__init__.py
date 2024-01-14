@@ -1,2 +1,5 @@
+import importlib.metadata
+
 from imshow._imshow import imshow  # noqa: F401
-from imshow._version import __version__  # noqa: F401
+
+__version__ = importlib.metadata.version("imshow")
