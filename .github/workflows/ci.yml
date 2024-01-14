@@ -45,6 +45,12 @@ jobs:
         script-name: imshow
         onefile: true
 
+    - name: Test Executable
+      run: |
+        ./build/imshow.bin --version
+      # `import pyglet` crashes on ubuntu-latest due to missing X window system
+      if: matrix.os == 'macos-latest'
+
     - name: Rename Executable
       run: |
         mv build/imshow.bin build/imshow-${{ runner.os }}.bin
