@@ -56,12 +56,6 @@ fragments = [
 [tool.hatch.version]
 source = "vcs"
 
-[tool.hatch.build.hooks.vcs]
-version-file = "imshow/_version.py"
-template = '''
-__version__ = "{version}"
-'''
-
 [project.scripts]
 imshow = "imshow:__main__.main"
 
