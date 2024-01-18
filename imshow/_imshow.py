@@ -71,7 +71,8 @@ def imshow(
         except TypeError:
             total_size_str = "n"
         print(
-            f"[{state.index + 1}/{total_size_str}] {get_title_from_item(item)}",
+            f"[{state.index + 1}/{total_size_str}] "
+            f"{get_title_from_item(items[state.index])}",
             file=sys.stderr,
         )
 
