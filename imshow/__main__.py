@@ -5,6 +5,7 @@ import sys
 
 import imshow
 import imshow.plugins
+from imshow import _args
 
 
 def main():
@@ -49,7 +50,9 @@ def main():
                 sys.exit(1)
 
     plugin_module.Plugin.add_arguments(parser=parser)
-    args = parser.parse_args()
+
+    args = _args.expand_args(sys.argv[1:]) if os.name == "nt" else sys.argv[1:]
+    args = parser.parse_args(args=args)
 
     if args.help:
         parser.print_help()
