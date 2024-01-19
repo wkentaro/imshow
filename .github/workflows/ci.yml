@@ -109,7 +109,7 @@ jobs:
 
       - name: Create Changelog
         run: |
-          echo ${{steps.github_release.outputs.changelog}} > ${{ github.workspace }}-CHANGELOG.txt
+          echo '${{steps.github_release.outputs.changelog}}' > ${{ github.workspace }}-CHANGELOG.txt
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
