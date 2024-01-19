@@ -19,6 +19,9 @@
 
 ## Installation
 
+<a href="https://pypi.org/project/imshow"><img src="https://img.shields.io/pypi/pyversions/imshow.svg"></a>
+<a href="https://pypi.python.org/pypi/imshow"><img src="https://img.shields.io/pypi/v/imshow.svg"></a>
+
 ```bash
 python3 -m pip install imshow
 ```
