@@ -1,6 +1,7 @@
 from typing import List
 
 import imgviz
+import numpy as np
 
 from imshow import _paths
 
@@ -19,13 +20,22 @@ class Plugin:
             action="store_true",
             help="recursively search files in dirs",
         )
+        parser.add_argument(
+            "--rotate",
+            type=int,
+            default=0,
+            choices=[0, 90, 180, 270],
+            help="rotate images by 90, 180, or 270 degrees",
+        )
 
     files_or_dirs: List[str]
     recursive: bool
+    rotate: int
 
     def __init__(self, args):
         self.files_or_dirs = args.files_or_dirs
         self.recursive = args.recursive
+        self.rotate = args.rotate
 
     def get_items(self):
         yield from _paths.get_image_filepaths(
@@ -33,7 +43,10 @@ class Plugin:
         )
 
     def get_image(self, item):
-        return imgviz.io.imread(item)
+        image = imgviz.io.imread(item)
+        if self.rotate > 0:
+            image = np.rot90(image, k=self.rotate // 90)
+        return image
 
     def get_keymap(self):
         return {}

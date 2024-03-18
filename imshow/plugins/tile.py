@@ -71,9 +71,11 @@ class Plugin(base.Plugin):
 
     def get_image(self, item):
         images = [
-            np.zeros((1, 1, 3), dtype=np.uint8)
-            if filepath is None
-            else imgviz.asrgb(imgviz.io.imread(filepath))
+            (
+                np.zeros((1, 1, 3), dtype=np.uint8)
+                if filepath is None
+                else imgviz.asrgb(super(Plugin, self).get_image(item=filepath))
+            )
             for filepath in item
         ]
         return imgviz.tile(
