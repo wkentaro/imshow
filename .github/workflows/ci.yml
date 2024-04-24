@@ -14,7 +14,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-20.04, windows-latest]
+        # os: [macos-latest, ubuntu-20.04, windows-latest]
+        os: [macos-latest]
 
     steps:
     - uses: actions/checkout@v4
@@ -22,10 +23,9 @@ jobs:
         fetch-depth: 0
 
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
-        architecture: 'x64'
         cache: 'pip'
         cache-dependency-path: |
           pyproject.toml
@@ -39,3 +39,30 @@ jobs:
         make lint
       # `import pyglet` crashes on ubuntu-latest due to missing X window system
       if: matrix.os == 'macos-latest'
+
+    - name: Build Executable
+      uses: Nuitka/Nuitka-Action@main
+      with:
+        nuitka-version: main
+        script-name: imshow
+        standalone: true
+        onefile: false
+
+    - name: Test Executable
+      run: |
+        ./build/imshow.dist/imshow.bin --version
+        time ./build/imshow.dist/imshow.bin
+      # `import pyglet` crashes on ubuntu-latest due to missing X window system
+      if: matrix.os == 'macos-latest'
+
+    - name: Rename Executable
+      run: |
+        mv build/imshow.dist build/imshow-${{ runner.os }}.dist
+      if: matrix.os != 'windows-latest'
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: imshow-${{ runner.os }}.dist
+        path: |
+          build/imshow-*.dist
