@@ -30,8 +30,8 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-  "imgviz",
-  "pyglet",
+  "imgviz~=1.7.5",
+  "pyglet~=1.5.31",
 ]
 dynamic = ["readme", "version"]
 
