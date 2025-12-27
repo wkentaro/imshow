@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "imshow"
 description = "Flexible and Customizable Image Display"
 license = { text = "MIT" }
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
   { name = "Kentaro Wada", email = "www.kentaro.wada@gmail.com" },
 ]
@@ -22,11 +22,11 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
@@ -35,13 +35,13 @@ dependencies = [
 ]
 dynamic = ["readme", "version"]
 
-[project.optional-dependencies]
-test = [
-  "mypy",
-  "types-Pillow",
-  "pytest",
-  "ruff",
-  "twine",
+[dependency-groups]
+dev = [
+  "mypy>=1.19.1",
+  "pytest>=9.0.2",
+  "ruff>=0.14.10",
+  "twine>=6.2.0",
+  "types-pillow>=10.2.0.20240822",
 ]
 
 [project.urls]
