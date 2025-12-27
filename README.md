@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/wkentaro/imshow/raw/main/.readme/icon.png" width="200", height="200">
+  <img src="https://github.com/wkentaro/imshow/raw/main/assets/icon.png" width="200", height="200">
   <h1>Imshow</h1>
   <p>
     <b>Flexible and Customizable Image Display</b>
@@ -64,7 +64,7 @@ imshow examples/*.jpg -p tile --col 3 --row 3
 imshow examples/*.jpg -p tile --col 3
 ```
 
-<img src="https://github.com/wkentaro/imshow/raw/main/.readme/tile_0.png" height="200"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/tile_1.png" height="150">
+<img src="https://github.com/wkentaro/imshow/raw/main/assets/tile_0.png" height="200"> <img src="https://github.com/wkentaro/imshow/raw/main/assets/tile_1.png" height="150">
 
 ### `-p mark`
 
@@ -72,13 +72,13 @@ imshow examples/*.jpg -p tile --col 3
 imshow examples/*[0-9].jpg -p mark --mark-file examples/mark.txt
 ```
 
-<img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/mark_2.png" height="150"> 
+<img src="https://github.com/wkentaro/imshow/raw/main/assets/mark_0.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/assets/mark_1.png" height="150"> <img src="https://github.com/wkentaro/imshow/raw/main/assets/mark_2.png" height="150"> 
 
 ## How to create custom plugin
 
 You can pass a Python file that contains `class Plugin(base.Plugin)` to `--plugin, -p` to customize the behaviour of Imshow. Below example shows a countdown from 10 to 0 displayed as images.
 
-<img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_0.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_1.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/.readme/countdown_2.png" height=150>
+<img src="https://github.com/wkentaro/imshow/raw/main/assets/countdown_0.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/assets/countdown_1.png" height=150> <img src="https://github.com/wkentaro/imshow/raw/main/assets/countdown_2.png" height=150>
 
 See [`plugins/base.py`](https://github.com/wkentaro/imshow/blob/main/imshow/plugins/base.py) for the most basic example of scanning image files and displaying them.
 For more examples, check [`plugins` folder](https://github.com/wkentaro/imshow/blob/main/imshow/plugins).
