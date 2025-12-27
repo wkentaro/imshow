@@ -35,13 +35,13 @@ dependencies = [
 ]
 dynamic = ["readme", "version"]
 
-[project.optional-dependencies]
-test = [
-  "mypy",
-  "types-Pillow",
-  "pytest",
-  "ruff",
-  "twine",
+[dependency-groups]
+dev = [
+  "mypy>=1.19.1",
+  "pytest>=9.0.2",
+  "ruff>=0.14.10",
+  "twine>=6.2.0",
+  "types-pillow>=10.2.0.20240822",
 ]
 
 [project.urls]
