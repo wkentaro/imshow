@@ -1,12 +1,10 @@
-from typing import Optional
-
 import numpy as np
 import PIL.Image
 import pyglet
 
 
 def initialize_window(
-    aspect_ratio: float, caption: Optional[str] = None
+    aspect_ratio: float, caption: str | None = None
 ) -> pyglet.window.Window:
     display: pyglet.canvas.Display = pyglet.canvas.Display()
     screen: pyglet.canvas.Screen = display.get_default_screen()

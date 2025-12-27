@@ -1,8 +1,7 @@
 import sys
 import types
+from collections.abc import Callable
 from typing import Any
-from typing import Callable
-from typing import Optional
 
 import numpy as np
 import pyglet
@@ -14,9 +13,9 @@ from imshow import _pyglet
 def imshow(
     items: Any,
     *,
-    keymap: Optional[dict] = None,
-    get_image_from_item: Optional[Callable] = None,
-    get_title_from_item: Optional[Callable] = None,
+    keymap: dict | None = None,
+    get_image_from_item: Callable | None = None,
+    get_title_from_item: Callable | None = None,
 ) -> None:
     if not isinstance(items, (list, types.GeneratorType)):
         items = [items]

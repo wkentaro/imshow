@@ -1,5 +1,3 @@
-from typing import List
-
 import imgviz
 import numpy as np
 
@@ -28,7 +26,7 @@ class Plugin:
             help="rotate images by 90, 180, or 270 degrees",
         )
 
-    files_or_dirs: List[str]
+    files_or_dirs: list[str]
     recursive: bool
     rotate: int
 

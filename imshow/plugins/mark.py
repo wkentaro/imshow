@@ -1,7 +1,6 @@
 import argparse
 import os
 import sys
-from typing import List
 
 import numpy as np
 import pyglet
@@ -20,7 +19,7 @@ class Plugin(base.Plugin):
         )
 
     mark_file: str
-    marked_items: List[str]
+    marked_items: list[str]
 
     def __init__(self, args):
         super().__init__(args=args)

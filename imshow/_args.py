@@ -1,7 +1,6 @@
 import glob
 import os
-from typing import Iterable
-from typing import List
+from collections.abc import Iterable
 
 
 # https://github.com/pallets/click/blob/cab9483a30379f9b8e3ddb72d5a4e88f88d517b6/src/click/utils.py#L578  # noqa: E501
@@ -11,7 +10,7 @@ def expand_args(
     user: bool = True,
     env: bool = True,
     glob_recursive: bool = True,
-) -> List[str]:
+) -> list[str]:
     out = []
 
     for arg in args:

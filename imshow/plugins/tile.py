@@ -1,6 +1,5 @@
 import itertools
 import os
-from typing import List
 
 import imgviz
 import numpy as np
@@ -54,9 +53,9 @@ class Plugin(base.Plugin):
 
     row: int
     col: int
-    padding_color: List[int]
+    padding_color: list[int]
     border_width: int
-    border_color: List[int]
+    border_color: list[int]
 
     def __init__(self, args):
         super().__init__(args=args)
