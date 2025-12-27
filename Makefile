@@ -24,7 +24,7 @@ help:
 
 PACKAGE_NAME:=imshow
 
-setup:  # Setup the development environment
+setup:  # Setup dev env
 	$(call exec,uv sync --dev)
 
 format:  # Format code
