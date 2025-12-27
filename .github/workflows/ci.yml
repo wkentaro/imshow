@@ -22,12 +22,9 @@ jobs:
       with:
         python-version: "3.10"
 
-    - name: Install
-      run: |
+    - run: |
         uv sync
 
-    - name: Linter
-      run: |
+    - run: |
         make lint
-      # `import pyglet` crashes on ubuntu-latest due to missing X window system
-      if: matrix.os == 'macos-latest'
+      if: matrix.os == 'ubuntu-latest'
