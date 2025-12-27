@@ -60,15 +60,11 @@ def convert_to_imagedata(image: np.ndarray) -> pyglet.image.ImageData:
     image_pil: PIL.Image.Image = PIL.Image.fromarray(image)
     image_pil = image_pil.convert("RGB")
 
-    kwargs = dict(
+    image_pyglet: pyglet.image.ImageData = pyglet.image.ImageData(
         width=image_pil.width,
         height=image_pil.height,
         data=image_pil.tobytes(),
         pitch=-image_pil.width * len(image_pil.mode),
+        format=image_pil.mode,
     )
-    if hasattr(pyglet, "__version__") and pyglet.__version__[0] == "2":
-        kwargs["fmt"] = image_pil.mode
-    else:
-        kwargs["format"] = image_pil.mode
-    image_pil = pyglet.image.ImageData(**kwargs)
-    return image_pil
+    return image_pyglet
